@@ -12,13 +12,13 @@ async function createTables() {
         email VARCHAR(255) UNIQUE NOT NULL,
         password VARCHAR(255) NOT NULL,
         created_at TIMESTAMP NOT NULL,
-    )`);
+    )`)
 
     await client.query(`CREATE TABLE IF NOT EXISTS categories (
         id SERIAL PRIMARY KEY,
         name VARCHAR(255) NOT NULL,
         created_at TIMESTAMP NOT NULL,
-    )`);
+    )`)
 
     await client.query(`CREATE TABLE IF NOT EXISTS products (
         id SERIAL PRIMARY KEY,
@@ -28,13 +28,13 @@ async function createTables() {
         description TEXT,
         availability BOOLEAN NOT NULL,
         created_at TIMESTAMP NOT NULL,
-    )`);
+    )`)
 
     await client.query(`CREATE TABLE IF NOT EXISTS carts (
         id SERIAL PRIMARY KEY,
         user_id INTEGER REFERENCES users(id),
         created_at TIMESTAMP NOT NULL,
-    )`);
+    )`)
 
     await client.query(`CREATE TABLE IF NOT EXISTS cart_items (
         id SERIAL PRIMARY KEY,
@@ -42,13 +42,13 @@ async function createTables() {
         product_id INTEGER REFERENCES products(id),
         quantity INTEGER NOT NULL,
         created_at TIMESTAMP NOT NULL,
-    )`);
+    )`)
 
     await client.query(`CREATE TABLE IF NOT EXISTS orders (
         id SERIAL PRIMARY KEY,
         user_id INTEGER REFERENCES users(id),
         created_at TIMESTAMP NOT NULL,
-    )`);
+    )`)
 
     await client.query(`CREATE TABLE IF NOT EXISTS order_items (
         id SERIAL PRIMARY KEY,
@@ -56,13 +56,13 @@ async function createTables() {
         product_id INTEGER REFERENCES products(id),
         quantity INTEGER NOT NULL,
         created_at TIMESTAMP NOT NULL,
-    )`);
-    console.log("Tables created successfully!");
+    )`)
+    console.log("Tables created successfully!")
   } catch (err) {
-    console.error("Error creating tables:", err);
+    console.error("Error creating tables:", err)
   }
 }
 
-createTables();
+createTables()
 
 export default client

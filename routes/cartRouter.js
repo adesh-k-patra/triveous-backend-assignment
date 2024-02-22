@@ -3,6 +3,52 @@ const client = require("../db")
 const authMiddleware = require("../authMiddleware")
 const cartRouter = express.Router()
 
+/**
+ * @swagger
+ * /cart:
+ *   post:
+ *     summary: Add a product to the cart
+ *     description: Add a product to the cart
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               productId:
+ *                 type: number
+ *               quantity:
+ *                 type: number
+ *     responses:
+ *       200:
+ *         description: Product added to cart successfully.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *       404:
+ *         description: Product not found.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *       500:
+ *         description: Internal server error.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ */
 //Add a product to the cart
 cartRouter.post('/', authMiddleware, async (req, res) => {
   const { productId, quantity } = req.body
@@ -29,7 +75,42 @@ cartRouter.post('/', authMiddleware, async (req, res) => {
   }
 });
 
-
+/**
+ * @swagger
+ * /cart:
+ *   get:
+ *     summary: Get all the products present in the cart
+ *     description: Get all the products present in the cart
+ *     responses:
+ *       200:
+ *         description: Product added to cart successfully.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   id:
+ *                     type: number
+ *                   user_id:
+ *                     type: number
+ *                   product_id:
+ *                     type: number
+ *                   quantity:
+ *                     type: number
+ *                   created_at:
+ *                     type: string
+ *       500:
+ *         description: Internal server error.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ */
 //Get the Cart
 cartRouter.get('/', authMiddleware, async (req, res) => {
   const userId = req.userId
@@ -41,7 +122,52 @@ cartRouter.get('/', authMiddleware, async (req, res) => {
   }
 });
 
-
+/**
+ * @swagger
+ * /cart:
+ *   put:
+ *     summary: Update the quantity of a product to the cart
+ *     description: Update the quantity of a product to the cart
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               productId:
+ *                 type: number
+ *               quantity:
+ *                 type: number
+ *     responses:
+ *       200:
+ *         description: Cart updated successfully.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *       404:
+ *         description: Product not found in the cart
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *       500:
+ *         description: Internal server error.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ */
 //Update the quantity of a product in the Cart
 cartRouter.put('/', authMiddleware, async (req, res) => {
   const { productId, quantity } = req.body
@@ -62,6 +188,52 @@ cartRouter.put('/', authMiddleware, async (req, res) => {
   }
 });
 
+/**
+ * @swagger
+ * /cart:
+ *   delete:
+ *     summary: Remove a product from the cart
+ *     description: Remove a product from the cart
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               productId:
+ *                 type: number
+ *               quantity:
+ *                 type: number
+ *     responses:
+ *       200:
+ *         description: Product removed from cart successfully.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *       404:
+ *         description: Product not found in the cart.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *       500:
+ *         description: Internal server error.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ */
 //Remove a product from the cart
 cartRouter.delete('/', authMiddleware, async (req, res) => {
   const { productId } = req.body;

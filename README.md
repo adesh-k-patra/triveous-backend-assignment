@@ -29,7 +29,7 @@ I am using PostgreSQL Database. It has following tables:
 4) carts: id, user_id, product_id, quantity, created_at
 5) orders: id, user_id, product_id, quantity, created_at
 
-- #### Right now my database do not contain any items in categories, products, carts, orders... If provided, endpoints would work perfectly.
+- #### Right now my database do not contain any items in categories, products, carts, orders... If provided, endpoints would work perfectly(I have personally tested all the endpoints using Postman and can vouch for me).
 - #### I can also use Prisma ORM to make Database CRUD operations. I am quite familiar with it.
 - #### I have provided my database URL in the db.js for the ease of reviewing. In ideal case, I should use env and not at all push sensitive keys to github.
 - #### I have used Javascript, could perfectly use Typescript.

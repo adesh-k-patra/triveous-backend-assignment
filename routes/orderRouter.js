@@ -1,10 +1,12 @@
-import express from 'express'
-import authMiddleware from '../authMiddleware'
-import client from '../db'
+const express = require('express')
+const authMiddleware = require('../authMiddleware')
+const client = require('../db')
+
 const orderRouter = express.Router()
+orderRouter.use(authMiddleware)
 
 //Order Placement
-orderRouter.get('/place', authMiddleware, async (req,res) => {
+orderRouter.get('/place', async (req,res) => {
   const userId = req.userId
 
   try {
@@ -28,7 +30,7 @@ orderRouter.get('/place', authMiddleware, async (req,res) => {
 })
 
 //Order History
-orderRouter.get('/', authMiddleware, async (req,res) => {
+orderRouter.get('/', async (req,res) => {
   const userId = req.userId
   try {
     const orderItems = await client.query('SELECT * FROM orders WHERE user_id = $1', [userId])
@@ -39,7 +41,7 @@ orderRouter.get('/', authMiddleware, async (req,res) => {
 })
 
 //Order Details
-orderRouter.get('/:orderId', authMiddleware, async(req,res) => {
+orderRouter.get('/:orderId', async(req,res) => {
   const orderId = req.params.orderId
 
   try {
@@ -49,5 +51,4 @@ orderRouter.get('/:orderId', authMiddleware, async(req,res) => {
     res.status(500).json({ message : 'Internal Server Error'})
   }
 })
-
-export default orderRouter
+module.exports = orderRouter

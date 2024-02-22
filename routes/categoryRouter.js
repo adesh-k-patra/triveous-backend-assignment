@@ -1,5 +1,5 @@
-import express from "express"
-import client from "../db"
+const express = require('express')
+const client = require("../db")
 const categoryRouter = express.Router()
 
 //Category Listing
@@ -22,6 +22,4 @@ categoryRouter.get('/:categoryId', async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' })
   }
 });
-
-
-export default categoryRouter
+module.exports = categoryRouter

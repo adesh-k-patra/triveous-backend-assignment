@@ -1,4 +1,4 @@
-import express from "express"
+const express = require('express')
 const productRouter = express.Router()
 
 //Product Details
@@ -13,4 +13,4 @@ productRouter.get('/:productId', async (req, res) => {
 });
 
 
-export default productRouter
+module.exports = productRouter

@@ -1,6 +1,6 @@
-import express from "express"
-import client from "../db"
-import authMiddleware from "../authMiddleware"
+const express = require('express')
+const client = require("../db")
+const authMiddleware = require("../authMiddleware")
 const cartRouter = express.Router()
 
 //Add a product to the cart
@@ -31,7 +31,7 @@ cartRouter.post('/', authMiddleware, async (req, res) => {
 
 
 //Get the Cart
-cartRouter.get('/cart', authMiddleware, async (req, res) => {
+cartRouter.get('/', authMiddleware, async (req, res) => {
   const userId = req.userId
   try {
     const cartItems = await client.query('SELECT * FROM carts WHERE user_id = $1', [userId])
@@ -82,4 +82,4 @@ cartRouter.delete('/', authMiddleware, async (req, res) => {
   }
 })
 
-export default cartRouter
+module.exports = cartRouter

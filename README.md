@@ -19,7 +19,7 @@ Visit `http://localhost:3000/api-docs`
 Server only accepts 100 requests in 15 minutes from a particular IP
 
 ### JWT Aunthentication
-User need to be signed-up/logged in to add product to the card/ placing a order. Fetching categories and product list is open to all.
+User need to be signed-up/logged in to add product to the cart/ placing a order. Fetching categories and product list is open to all.
 
 ## Database Schema 
 I am using PostgreSQL Database. It has following tables:

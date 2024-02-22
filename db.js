@@ -33,12 +33,6 @@ async function createTables() {
     await client.query(`CREATE TABLE IF NOT EXISTS carts (
         id SERIAL PRIMARY KEY,
         user_id INTEGER REFERENCES users(id),
-        created_at TIMESTAMP NOT NULL,
-    )`)
-
-    await client.query(`CREATE TABLE IF NOT EXISTS cart_items (
-        id SERIAL PRIMARY KEY,
-        cart_id INTEGER REFERENCES carts(id),
         product_id INTEGER REFERENCES products(id),
         quantity INTEGER NOT NULL,
         created_at TIMESTAMP NOT NULL,
@@ -47,12 +41,6 @@ async function createTables() {
     await client.query(`CREATE TABLE IF NOT EXISTS orders (
         id SERIAL PRIMARY KEY,
         user_id INTEGER REFERENCES users(id),
-        created_at TIMESTAMP NOT NULL,
-    )`)
-
-    await client.query(`CREATE TABLE IF NOT EXISTS order_items (
-        id SERIAL PRIMARY KEY,
-        order_id INTEGER REFERENCES orders(id),
         product_id INTEGER REFERENCES products(id),
         quantity INTEGER NOT NULL,
         created_at TIMESTAMP NOT NULL,

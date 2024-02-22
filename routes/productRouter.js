@@ -1,7 +1,7 @@
 import express from "express"
 const productRouter = express.Router()
 
-//Get Product Details
+//Product Details
 productRouter.get('/:productId', async (req, res) => {
   const productId = req.params.productId
   try {

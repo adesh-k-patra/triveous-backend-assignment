@@ -2,7 +2,7 @@ import express from "express"
 import client from "../db"
 const categoryRouter = express.Router()
 
-//Get Category Listing
+//Category Listing
 categoryRouter.get('/', async (req, res) => {
   try {
     const categories = await client.query('SELECT * FROM categories')
@@ -12,7 +12,7 @@ categoryRouter.get('/', async (req, res) => {
   }
 });
 
-//Get Product Listing based on Category ID
+//Product Listing based on Category ID
 categoryRouter.get('/:categoryId', async (req, res) => {
   const categoryId = req.params.categoryId
   try {
